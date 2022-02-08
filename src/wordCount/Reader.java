@@ -11,6 +11,7 @@ public class Reader {
     static ArrayList<String> words = new ArrayList<String>();
 
 
+    //Indlæser alle linje og splitter dem ved mellemrum og sætter alle orderne ind i en arrayliste.
     public static void getWordsFromFile(){
         try {
             BufferedReader reader = new BufferedReader(new FileReader("src/wordCount/MobyDick.txt"));
@@ -29,6 +30,7 @@ public class Reader {
         }
     }
 
+    //Metode som fjerner alle specialtegn og sætter alle bogstaver til små så der ikke kommer duplikater i listen.
     private static String[] makeWordsAlike(String[] curentWords){
         for (int i = 0; i < curentWords.length; i++) {
             curentWords[i] = curentWords[i].replaceAll("[^a-zA-Z]", "");
