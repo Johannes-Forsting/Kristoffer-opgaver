@@ -1,15 +1,18 @@
 package wordCount;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 public class CountWords {
 
     static HashMap<String, Integer> map = new HashMap<String, Integer>();
     public static void main(String[] args) {
-        ArrayList<String> test = Reader.getWordsFromFile();
-        addWordsToHashmap(test);
-        System.out.println(map.toString());
+        Reader.getWordsFromFile();
+        addWordsToHashmap(Reader.words);
+        map.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(System.out::println);
+
     }
 
     public static void addWordsToHashmap(ArrayList<String> words){

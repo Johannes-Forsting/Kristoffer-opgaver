@@ -8,24 +8,33 @@ import java.util.ArrayList;
 public class Reader {
 
 
+    static ArrayList<String> words = new ArrayList<String>();
 
 
-
-    public static ArrayList<String> getWordsFromFile(){
-        ArrayList<String> words = new ArrayList<String>();
+    public static void getWordsFromFile(){
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/wordCount/text.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/wordCount/MobyDick.txt"));
             String line;
             while((line = reader.readLine()) != null){
                 String[] currentLine = line.split(" ");
+                currentLine = makeWordsAlike(currentLine);
                 for (int i = 0; i < currentLine.length ; i++) {
-                    words.add(currentLine[i]);
+                    if (currentLine[i].equals("") == false) {
+                        words.add(currentLine[i]);
+                    }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return words;
+    }
+
+    private static String[] makeWordsAlike(String[] curentWords){
+        for (int i = 0; i < curentWords.length; i++) {
+            curentWords[i] = curentWords[i].replaceAll("[^a-zA-Z]", "");
+            curentWords[i] = curentWords[i].toLowerCase();
+        }
+        return curentWords;
     }
 
 }
