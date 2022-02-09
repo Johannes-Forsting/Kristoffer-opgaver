@@ -19,6 +19,7 @@ public class CountWords {
 
         //Fandt denne linje på nettet. Ved ikke helt hvordan den virker men den sortere på value og printer dem ud.
         map.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(System.out::println);
+        findWord("the");
 
     }
     //Metode som tager arraylisten med samtlige ord og indsætter dem i Hashmap
@@ -32,5 +33,16 @@ public class CountWords {
             }
 
         }
+    }
+
+    private static void findWord(String word){
+        word = word.toLowerCase();
+        if(map.containsKey(word)){
+            System.out.println("The word: \"" + word + "\" appears " + map.get(word) + " times.");
+        }
+        else {
+            System.out.println("The word: \"" + word + "\" appears 0 times.");
+        }
+
     }
 }
